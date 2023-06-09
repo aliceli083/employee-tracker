@@ -43,16 +43,32 @@ function menu() {
                 }
                 ]
         })
-            .then(response => {
-                if (response.menu === "view all departments") {
-                    viewdepartment()
-                }
-            })
-
-}
+        .then(response => {
+            if (response.menu === "view all departments") {
+                viewdepartment();
+            } else if (response.menu === "view all roles") {
+                viewrole();
+            } else if (response.menu === "view all employees") {
+                viewemployee();
+            
+        }
+    
+})
 function viewdepartment() {
     db.query("select * from department", (err, data) => {
-        console.table(data)
-        menu()
-    })
+        console.table(data);
+        menu();
+    });
 }
+function viewrole() {
+    db.query("select * from role", (err, data) => {
+        console.table(data);
+        menu();
+    });
+}
+function viewemployee() {
+    db.query("select * from employee", (err, data) => {
+        console.table(data);
+        menu();
+    });
+}}
